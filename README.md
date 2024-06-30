@@ -18,7 +18,7 @@ mvn compile
 mvn test
 ````
 # Reporte de resultados de las pruebas unitarias.
-Se realizaron 12 test, 3 para cada una de las áreas (usuarios, sala y reservas) y cada uno con 4 test para creación, obtención, actualización y eliminación de datos.
+Se realizaron 12 test. En cada una de las 3 áreas (usuarios, sala y reservas) se hicieron 4 tests, para creación, obtención, actualización y eliminación de datos.
 Todos los tests implementados resultaron exitosos.
 ````
 [INFO] -------------------------------------------------------
