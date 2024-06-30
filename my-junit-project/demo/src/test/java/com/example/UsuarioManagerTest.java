@@ -1,6 +1,7 @@
 package com.example;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,5 +40,17 @@ public class UsuarioManagerTest {
         assertEquals("Juan Actualizado", usuarioObtenido.getNombre());
         assertEquals("HR", usuarioObtenido.getDepartamento());
         assertEquals("Gerente", usuarioObtenido.getDescripcion());
+    }
+
+    @Test
+    public void testObtenerUsuarioPorId() {
+        Usuario usuario = new Usuario("001", "Juan", "IT", "Desarrollador");
+        usuarioManager.agregarUsuario(usuario);
+
+        Usuario usuarioObtenido = usuarioManager.obtenerUsuarioPorId("001");
+        assertNotNull(usuarioObtenido);
+        assertEquals("Juan", usuarioObtenido.getNombre());
+        assertEquals("IT", usuarioObtenido.getDepartamento());
+        assertEquals("Desarrollador", usuarioObtenido.getDescripcion());
     }
 }

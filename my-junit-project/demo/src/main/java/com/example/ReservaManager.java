@@ -11,6 +11,10 @@ public class ReservaManager {
         reservas = new ArrayList<>();
     }
 
+    public List<Reserva> obtenerTodasLasReservas() {
+        return new ArrayList<>(reservas);
+    }
+
     public void agregarReserva(Reserva reserva) {
         reservas.add(reserva);
     }

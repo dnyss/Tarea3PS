@@ -1,6 +1,7 @@
 package com.example;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -52,5 +53,21 @@ public class ReservaManagerTest {
         assertEquals("Maria", reservaActualizada.getUsuario().getNombre());
         assertEquals(nuevaFecha, reservaActualizada.getFecha());
         assertEquals(nuevoDetalleReserva, reservaActualizada.getDetalle());
+    }
+
+    @Test
+    public void testObtenerReservas() {
+        // reservas de ejemplo
+        Reserva reserva1 = new Reserva(sala, usuario, LocalDate.now(), "Reunión de equipo");
+        Reserva reserva2 = new Reserva(sala, usuario, LocalDate.now().plusDays(1), "Entrevista");
+        reservaManager.agregarReserva(reserva1);
+        reservaManager.agregarReserva(reserva2);
+
+        List<Reserva> reservas = reservaManager.obtenerReservas();
+
+        assertEquals(2, reservas.size());
+
+        assertEquals("Reunión de equipo", reservas.get(0).getDetalle());
+        assertEquals("Entrevista", reservas.get(1).getDetalle());
     }
 }

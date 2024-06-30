@@ -1,6 +1,7 @@
 package com.example;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -17,7 +18,7 @@ public class App {
             System.out.println("3. Gestión de Reservas");
             System.out.println("4. Salir");
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             switch (opcion) {
                 case 1:
@@ -43,10 +44,11 @@ public class App {
         System.out.println("1. Crear Usuario");
         System.out.println("2. Actualizar Usuario");
         System.out.println("3. Eliminar Usuario");
-        System.out.println("4. Volver al Menú Principal");
+        System.out.println("4. Ver Usuario por ID");
+        System.out.println("5. Volver al Menú Principal");
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea después de nextInt
-
+        scanner.nextLine();
+    
         switch (opcion) {
             case 1:
                 crearUsuario(scanner);
@@ -58,9 +60,28 @@ public class App {
                 eliminarUsuario(scanner);
                 break;
             case 4:
-                return; // Volver al menú principal
+                verUsuarioPorId(scanner); 
+                break;
+            case 5:
+                return; 
             default:
                 System.out.println("Opción no válida.");
+        }
+    }
+    
+    private static void verUsuarioPorId(Scanner scanner) {
+        System.out.println("Ingrese el ID del usuario:");
+        String id = scanner.nextLine().trim();
+    
+        Usuario usuario = usuarioManager.obtenerUsuarioPorId(id);
+        if (usuario == null) {
+            System.out.println("No existe un usuario con ese ID.");
+        } else {
+            System.out.println("Usuario encontrado:");
+            System.out.println("ID: " + usuario.getId());
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("Departamento: " + usuario.getDepartamento());
+            System.out.println("Descripción: " + usuario.getDescripcion());
         }
     }
 
@@ -137,15 +158,17 @@ public class App {
         System.out.println("Usuario eliminado correctamente.");
     }
     
-     private static void gestionSalas(Scanner scanner) {
+    private static void gestionSalas(Scanner scanner) {
         System.out.println("Gestión de Salas:");
         System.out.println("1. Crear Sala");
         System.out.println("2. Actualizar Sala");
         System.out.println("3. Eliminar Sala");
-        System.out.println("4. Volver al Menú Principal");
+        System.out.println("4. Ver Sala por Código");
+        System.out.println("5. Volver al Menú Principal");
+    
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea después de nextInt
-
+        scanner.nextLine(); 
+    
         switch (opcion) {
             case 1:
                 crearSala(scanner);
@@ -157,11 +180,29 @@ public class App {
                 eliminarSala(scanner);
                 break;
             case 4:
-                return; // Volver al menú principal
+                verSalaPorCodigo(scanner);
+                break;
+            case 5:
+                return; 
             default:
                 System.out.println("Opción no válida.");
         }
     }
+    
+    private static void verSalaPorCodigo(Scanner scanner) {
+        System.out.println("Ingrese el código de la sala:");
+        String codigo = scanner.nextLine().trim();
+    
+        Sala sala = salaManager.obtenerSalaPorCodigo(codigo);
+        if (sala == null) {
+            System.out.println("No existe una sala con ese código.");
+        } else {
+            System.out.println("Detalles de la Sala:");
+            System.out.println("Código: " + sala.getCodigo());
+            System.out.println("Nombre: " + sala.getNombre());
+            System.out.println("Ubicación: " + sala.getUbicacion());
+        }
+    }    
 
     private static void crearSala(Scanner scanner) {
         System.out.println("Ingrese el código de la sala:");
@@ -233,9 +274,10 @@ public class App {
         System.out.println("1. Crear Reserva");
         System.out.println("2. Actualizar Reserva");
         System.out.println("3. Eliminar Reserva");
-        System.out.println("4. Volver al Menú Principal");
+        System.out.println("4. Ver todas las reservas");
+        System.out.println("5. Volver al Menú Principal");
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea después de nextInt
+        scanner.nextLine(); 
 
         switch (opcion) {
             case 1:
@@ -248,7 +290,10 @@ public class App {
                 eliminarReserva(scanner);
                 break;
             case 4:
-                return; // Volver al menú principal
+                verTodasLasReservas();
+                break;
+            case 5:
+                return; 
             default:
                 System.out.println("Opción no válida.");
         }
@@ -284,6 +329,18 @@ public class App {
         reservaManager.agregarReserva(reserva);
         System.out.println("Reserva creada correctamente.");
     }
+
+    private static void verTodasLasReservas() {
+    List<Reserva> reservas = reservaManager.obtenerTodasLasReservas();
+    if (reservas.isEmpty()) {
+        System.out.println("No hay reservas registradas.");
+    } else {
+        System.out.println("Lista de Reservas:");
+        for (Reserva reserva : reservas) {
+            System.out.println(reserva);
+        }
+    }
+}
 
     private static void actualizarReserva(Scanner scanner) {
         System.out.println("Ingrese el código de la sala de la reserva:");

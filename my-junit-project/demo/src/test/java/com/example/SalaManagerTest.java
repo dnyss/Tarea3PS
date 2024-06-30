@@ -39,4 +39,14 @@ public class SalaManagerTest {
         assertEquals("Nueva Sala", salaObtenida.getNombre());
         assertEquals("Primer Piso", salaObtenida.getUbicacion());
     }
+
+    @Test
+    public void testObtenerSalaPorCodigo() {
+        Sala sala = new Sala("001", "Sala 1", "Planta Baja");
+        salaManager.agregarSala(sala);
+
+        Sala salaObtenida = salaManager.obtenerSalaPorCodigo("001");
+        assertEquals("Sala 1", salaObtenida.getNombre());
+        assertEquals("Planta Baja", salaObtenida.getUbicacion());
+    }
 }
