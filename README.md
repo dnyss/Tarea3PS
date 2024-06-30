@@ -2,7 +2,13 @@
 El programa fue realizado utilizando Java, Maven y JUnit para las pruebas.
 Cuenta con archivos UsuarioManager.java, SalaManager.java y ReservaManager.java que se encargan de implemmentar la lógica para obtener, actualizar y eliminar datos.
 # Instrucciones ejecución.
-Accede a la direccion ````\tarea3 pruebas\my-junit-project\demo>```` y ejecuta:
+Accede a la direccion ````\tarea3 pruebas\my-junit-project\demo>```` 
+Para ejecutar programa principal:
+````
+mvn compile
+java -cp target/classes com.example.App
+````
+Para realizar pruebas ejecuta:
 ````
 mvn compile
 mvn test
